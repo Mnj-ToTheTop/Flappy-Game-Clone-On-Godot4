@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgpccxti0uabh"]
+
+[ext_resource type="Script" path="res://Pipes/obstacles.gd" id="1_gk6su"]
+[ext_resource type="PackedScene" uid="uid://ugxycr1m7pbk" path="res://Pipes/pipes.tscn" id="1_u4r07"]
+[ext_resource type="AudioStream" uid="uid://d3wmh1wtqsntp" path="res://audio/point.wav" id="3_kj8du"]
+[ext_resource type="AudioStream" uid="uid://dhu174d8omsi1" path="res://audio/hit (2)-[AudioTrimmer.com].wav" id="4_d5rol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnrfa"]
+size = Vector2(32, 161)
+
+[node name="Obstacles" type="Node2D"]
+position = Vector2(550, 427)
+script = ExtResource("1_gk6su")
+
+[node name="Pipes" parent="." instance=ExtResource("1_u4r07")]
+position = Vector2(0, 300)
+
+[node name="Pipes2" parent="." instance=ExtResource("1_u4r07")]
+position = Vector2(0, -300)
+rotation = 3.14159
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_fnrfa")
+
+[node name="Score" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kj8du")
+volume_db = 5.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_d5rol")
+volume_db = 24.0
+
+[connection signal="body_entered" from="Pipes" to="." method="_on_pipes_body_entered"]
+[connection signal="body_entered" from="Pipes2" to="." method="_on_pipes_2_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]

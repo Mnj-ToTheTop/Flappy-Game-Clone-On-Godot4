@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://clneivo53rv43"]
+
+[ext_resource type="PackedScene" uid="uid://c3b7hu6hprahe" path="res://Background/background.tscn" id="1_bwteb"]
+[ext_resource type="Script" path="res://Level/level.gd" id="1_rsxbn"]
+[ext_resource type="PackedScene" uid="uid://c0klkedebw25k" path="res://Bird/bird.tscn" id="3_s31ob"]
+[ext_resource type="PackedScene" uid="uid://b3aiutq57xcd3" path="res://Background/ground.tscn" id="4_e8bsa"]
+[ext_resource type="FontFile" uid="uid://t3ux7unfmjak" path="res://Font/flappyfont.TTF" id="6_tohgt"]
+[ext_resource type="AudioStream" uid="uid://dhu174d8omsi1" path="res://audio/hit (2)-[AudioTrimmer.com].wav" id="7_p18ye"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_rsxbn")
+
+[node name="ObsTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[node name="Background" parent="." instance=ExtResource("1_bwteb")]
+
+[node name="Obstacles" type="Node2D" parent="."]
+
+[node name="Ground" parent="." instance=ExtResource("4_e8bsa")]
+position = Vector2(237, 851)
+metadata/_edit_group_ = true
+
+[node name="Bird" parent="." instance=ExtResource("3_s31ob")]
+position = Vector2(71, 345)
+scale = Vector2(1.5, 1.5)
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_right = 126.0
+offset_bottom = 231.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_tohgt")
+theme_override_font_sizes/font_size = 30
+text = "score: 45"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_p18ye")
+
+[connection signal="timeout" from="ObsTimer" to="." method="_on_obs_timer_timeout"]
+[connection signal="body_entered" from="Ground" to="." method="_on_ground_body_entered"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://21dpdfqfpr4f"]
+
+[ext_resource type="Script" path="res://Global.gd" id="1_dslwp"]
+[ext_resource type="AudioStream" uid="uid://bngx06s5e1a33" path="res://audio/wing.wav" id="2_3sd1v"]
+
+[node name="Global" type="Node"]
+script = ExtResource("1_dslwp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3sd1v")
+autoplay = true

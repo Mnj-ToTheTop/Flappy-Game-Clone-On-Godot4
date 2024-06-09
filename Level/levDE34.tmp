@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://clneivo53rv43"]
+
+[ext_resource type="PackedScene" uid="uid://c3b7hu6hprahe" path="res://Background/background.tscn" id="1_bwteb"]
+[ext_resource type="Script" path="res://Level/level.gd" id="1_rsxbn"]
+[ext_resource type="PackedScene" uid="uid://c0klkedebw25k" path="res://Bird/bird.tscn" id="3_s31ob"]
+[ext_resource type="PackedScene" uid="uid://b3aiutq57xcd3" path="res://Background/ground.tscn" id="4_e8bsa"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_rsxbn")
+
+[node name="Background" parent="." instance=ExtResource("1_bwteb")]
+
+[node name="Bird" parent="." instance=ExtResource("3_s31ob")]
+position = Vector2(71, 345)
+
+[node name="Ground" parent="." instance=ExtResource("4_e8bsa")]
+
+[connection signal="body_entered" from="Ground" to="." method="_on_ground_body_entered"]
+[connection signal="body_shape_entered" from="Ground" to="." method="_on_ground_body_shape_entered"]
