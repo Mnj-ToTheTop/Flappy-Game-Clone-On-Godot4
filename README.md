@@ -1,5 +1,5 @@
-# Flappy-Game-On-Godot4
-This is my attempt at Flappy game on Godot4 done from the scratch.
+# Flappy Game Clone On Godot4
+This is my attempt at cloning Flappy game on Godot4 done from the scratch.
 The sprites and audio belong to their creators. 
 
 
