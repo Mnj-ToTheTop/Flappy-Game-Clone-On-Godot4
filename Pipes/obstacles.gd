@@ -2,7 +2,7 @@ extends Node2D
 
 const Player = preload("res://Bird/bird.tscn")
 const SPEED = 300
-func _read():
+func _ready():
 	randomize()
 	
 	
